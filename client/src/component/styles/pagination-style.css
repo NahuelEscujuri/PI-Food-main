@@ -1,0 +1,200 @@
+/* Selects */
+.select, .css-13cymwt-control{
+    display: flex;
+    background-color: var(--dark-color);
+	margin: 50px 50px ;
+	justify-content: center;
+	padding: 10px;
+	border: none;
+	font-size: 15px;
+	box-shadow: 5px 5px 20px #1116;
+	-webkit-appearance: button;
+	outline: none;
+	cursor: pointer;
+}
+.select
+option:checked{
+	display: none;
+}
+
+.select-container{
+	margin-top: 60px;
+	justify-content: center;
+	display:flex;
+}
+
+/* Gallery */
+.container-cards{
+	display: flex;
+	width: 90%;
+	margin: 9px auto;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.card{
+	position:relative;
+	height: 300px;
+	max-width: 300px;
+    min-width: 300px;
+	margin: 30px;
+	overflow: hidden;
+	display: block;
+	flex-basis: 100%;
+	box-shadow: 5px 5px 20px #1116;
+	border-radius: 3%;
+    background-color: var(--main-color);
+}
+
+
+.card img{
+	object-fit: cover;
+    max-width: 301px;
+    align-content: center;
+    justify-content: center;
+}
+.card_text{
+	height: 200px;
+	width: 300px;
+	padding:  18px;
+	background-color: var(--main-color);
+	box-sizing: border-box;
+	position: absolute;
+	top: 230px;
+	transition: 0.3s;
+}
+
+.card_text h3{
+	text-transform: uppercase;
+    margin-bottom: 20px;
+}
+.card_text b{
+    color: var(--text-color);
+    display: block;
+    padding: 0 0 2px 0;
+}
+.card_text .card_text-diet{
+	display: flex;
+    width: 90%;
+    margin: 0 9px;
+    flex-wrap: wrap;
+    justify-content: left;
+}
+.card_text .card_text-diet p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-color);
+    background-color: var(--dark-color);
+    padding: 0.2rem 0.4rem;
+    margin: 0.2rem 0.2rem 0 0;
+    font-weight: 500;
+    border-radius: 9999px;
+}
+.card_text span{
+	color: var(--light-color);
+}
+
+.card:hover{
+	cursor: pointer;
+}
+
+.card:hover .card_text{
+	top: 100px;
+}
+
+/* BTN Page */
+
+.container-btn{
+	height: 100px;
+	position: relative;
+}
+.container-btn_pagination{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	margin: 0;
+	padding: 0;
+	display: flex;
+}
+.container-btn_pagination li{
+	width: 80px;
+	height: 80px;
+	list-style: none;
+	background-color: var(--light-color);
+	margin: 0 10px;
+	border-radius: 50%;
+	transition: .3s;
+	box-shadow: 5px 5px 20px #1116;
+}
+.container-btn_pagination li:hover{
+	background-color: var(--main-color);
+	cursor: pointer;
+}
+.container-btn_pagination li span{
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	border: solid 4px var(--text-color);
+	transition: .3s;
+}
+.container-btn_pagination li.next span{
+	top: 50%;
+	right: 20%;
+	transform: translateY(-50%) rotate(-45deg);
+	border-top: none;
+	border-left: none;
+} 
+.container-btn_pagination li.next:hover span{
+	right: 16%;
+}
+.container-btn_pagination li.next span::before{
+	content: '';
+	position: absolute;
+	width: 38px;
+	height: 4px;
+	background-color: var(--text-color);
+	transform-origin: right;
+	transform: rotate(45deg) translate(-5px,25px) scaleX(0);
+	transition: .3s;
+}  
+.container-btn_pagination li.next:hover span::before{
+	transform: rotate(45deg) translate(-5px,25px) scaleX(1);
+} 
+
+
+/* Prev */
+.container-btn_pagination li.prev span{
+	top: 50%;
+	left: 20%;
+	transform: translateY(-50%) rotate(-45deg);
+	border-bottom: none;
+	border-right: none;
+} 
+.container-btn_pagination li.prev:hover span{
+	left: 16%;
+	cursor: pointer;
+}
+.container-btn_pagination li.prev span::before{
+	content: '';
+	position: absolute;
+	width: 38px;
+	height: 4px;
+	background-color: var(--text-color);
+	transform-origin: left;
+	transform: rotate(45deg) translate(-2px,-1px) scaleX(0);
+	transition: .3s;
+}  
+.container-btn_pagination li.prev:hover span::before{
+	transform: rotate(45deg) translate(-2px,-1px) scaleX(1);
+} 
+
+/* Btn Desactive */
+/* .container-btn_pagination .notHover{
+	box-shadow: none;	
+    pointer-events: none;
+}
+.container-btn_pagination .notHover span{
+	border-color: var(--dark-color);
+} */

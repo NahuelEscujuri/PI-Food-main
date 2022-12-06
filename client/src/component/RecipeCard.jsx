@@ -20,6 +20,6 @@ const RecipeCard = (props)=>{
     )
 }
 
-export const mapDispatchToProps = {action};
+// export const mapDispatchToProps = {action};
 
 export default RecipeCard;

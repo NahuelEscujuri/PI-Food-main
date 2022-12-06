@@ -1,3 +1,34 @@
+*{
+    font-family: 'Poppins', sans-serif;
+	margin: 0;
+	padding: 0;
+	scroll-behavior: smooth;
+	box-sizing: border-box;
+	list-style: none;
+	text-decoration: none;
+	scroll-padding-top: 2rem;
+    color: #000000;
+}
+
+:root{
+    /* --main-color: #FDB827;
+    --dark-color: #23120B;
+    --light-color: #21209C;
+    --text-color: #F1F1F1; */
+
+    
+    --main-color: #FC8A15;
+    --dark-color: #009378;
+    --light-color: #1EE494;
+    --text-color: #F6F6F6;
+}
+
+
+body{
+    background-color: var(--dark-color);
+    color: var(--text-color);
+}
+
 .desactive{
 	display: none;
 }

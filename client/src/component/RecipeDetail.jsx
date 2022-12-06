@@ -9,14 +9,14 @@ import imgNotFound from "./img/imgNotFound.jpg";
 // import Loader from "./Loader.jsx";
 // import '../backgroundColorTypes.css'
 
-const RecipeDetail =(props) => {
+const RecipeDetail =() => {
     const [ currentRecipe, setCurrentRecipe] = useState([])
     const [ currentId, setCurrentId] = useState(-1)
 
     let {id} =useParams()
   
     const dispatch = useDispatch();
-    const recipe = useSelector((state) => state.recipes)
+    const recipe = useSelector((state) => state.recipeDetail)
     console.log("declarado el recipe",recipe)
 
     function indexSteps(){
@@ -28,6 +28,8 @@ const RecipeDetail =(props) => {
       }
     
     useEffect(()=>{
+      window.scrollTo(0, 0);
+
         if(currentId !== id){
             dispatch(action.getRecipeDetails(id))
             setCurrentId(id);
@@ -39,13 +41,16 @@ const RecipeDetail =(props) => {
         }
     })
 
+    useEffect(()=>{
+      setCurrentRecipe([])
+    },[id])
     try{
         return (
             <div> 
                 {console.log("current ID", currentId)}
                 {console.log("Current recipe ID",currentRecipe[0]?.id)}
-                {console.log("¿Son iguales?",currentRecipe.id === currentId)}
-                {
+                {console.log("¿Son iguales?",currentRecipe[0]?.id == currentId)}
+                {currentRecipe[0]?.id == currentId?(
                         <div className={`detail-content`}>
                             {/* IMG */}
                             <div className="detail-item">
@@ -61,33 +66,41 @@ const RecipeDetail =(props) => {
                               {/* Id */}
                               <div className="detail-item_item detail_id">
                                 <h3>ID:</h3>
-                                <h3>{recipe[0]?.id}</h3>
+                                <h3>{currentRecipe[0]?.id}</h3>
+                              </div>
+                              {/* Heald Score */}
+                              <div className="detail-item_item detail_id">
+                                <h3>Health Score:</h3>
+                                <h3>{currentRecipe[0]?.healthScore}</h3>
+                              </div>
+                              <div className="detail-item_item detail_id">
+                                <h3>Summary</h3>
+                                <p>{recipe[0]?.summary}</p>
                               </div>
                               {/* Steps */}
                               <div className="stats-container detail-item_item">
                                 <div className="stats-item">
-                                  {/* <ul>{
-                                    recipe[0]?.steps.length > 0 &&
+                                  <ul>{
+                                    recipe[0]?.steps &&
                                     indexSteps().map(s=>(
                                       <li>
                                         <h3>Step {s+1}</h3>
                                         <p>{recipe[0]?.steps[s]}</p>
                                       </li>
                                     ))}
-                                  </ul> */}
+                                  </ul>
                                 </div>
                               </div>
                               {/* Diets */}
-                               {/* <div className="type-container detail-item_item detail_types-container">
+                               <div className="type-container detail-item_item detail_diets-container">
                                 <h3>Diets:</h3>
-                                <div className="detail_types">
-                                   {recipe[0]?.diets.map(t=>(<p>{t}</p>))}
+                                <div className="detail_diets">
+                                   {currentRecipe[0]?.diets.map(t=>(<p>{t}</p>))}
                                 </div>
-                               </div> */}
+                               </div>
                             </div>
                             
-                        </div>
-                    // :<h3>Loader...</h3> //<Loader/>
+                        </div>):<h3>Loader...</h3> //<Loader/>
                 }
           </div>
         );

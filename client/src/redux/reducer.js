@@ -2,6 +2,7 @@ import { GET_ALL_RECIPES,GET_ALL_DIETS, GET_DETAIL_RECIPES, CREATE_RECIPES } fro
 
 const initialState ={
     recipes:[],
+    recipeDetail:[],
     diets:[]
 }
 
@@ -20,9 +21,10 @@ export default function rootReducer(state = initialState, actions){
             }
         }
         case GET_DETAIL_RECIPES:{
+            state.recipeDetail=[] 
             return {
                 ...state,
-                recipes: actions.payload
+                recipeDetail: actions.payload
             }
         }
         case GET_ALL_DIETS:{

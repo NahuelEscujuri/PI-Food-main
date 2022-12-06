@@ -13,6 +13,7 @@ export const getAllRecipes = (only,title)=>{
         return fetch(url)
         .then((response) => response.json())
         .then(data=>{
+            console.log("desde el ACTION",data)
             dispatch({
                 type: GET_ALL_RECIPES, payload: data
             })
@@ -25,7 +26,7 @@ export const getRecipeDetails = (id)=>{
         fetch(`http://localhost:3001/recipes/${id}`)
         .then((response) => response.json())
         .then(dataD=>{
-            console.log(dataD)
+            console.log("desde el ACTION",dataD)
             dispatch({
                 type: GET_DETAIL_RECIPES, payload: dataD
             })

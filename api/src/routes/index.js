@@ -41,7 +41,10 @@ const clearRecipesDb = async(r)=>{
         return await newRecipe
     })
     console.log("Debuelve",await result)
-    return await result;
+    return await Promise.all(result).then(f=>{
+        try{
+        return f 
+    }catch(e){console.log(e)}})
 }
 
 //Gets
@@ -72,10 +75,7 @@ const allRecipesDb = async (title)=>{
         }        
     });
 
-    return await Promise.all(result).then(f=>{
-        try{
-        return f 
-    }catch(e){console.log(e)}})
+    return await result
 }
 const allRecipesTotal = async (title)=>{
     try{
@@ -120,7 +120,7 @@ router.get("/recipes/:id",async (req,res,next)=>{
             where:{
                 id:id
             }
-        }).then(async r=>{return await clearRecipesDb(r)},()=>{return false})
+        }).then(async r=>{console.log("find all",r);return await clearRecipesDb(r)},()=>{return false})
 
         let apiKey = API_KEY.slice(1,API_KEY.length-1);
         let apiUrl = "https://api.spoonacular.com/recipes/"+id+"/information?apiKey="+apiKey;
