@@ -30,7 +30,7 @@ export const getRecipeDetails = (id)=>{
             dispatch({
                 type: GET_DETAIL_RECIPES, payload: dataD
             })
-        })
+        },(e)=>console.log(e))
     }
 }
 
@@ -44,7 +44,7 @@ export function createRecipe(values){
          dispatch({
             type: CREATE_RECIPES, payload: data
          });
-      });
+      },(e)=>console.log(e));
      };
 }
 
@@ -57,6 +57,6 @@ export const getAllDiets = ()=>{
             dispatch({
                 type: GET_ALL_DIETS, payload: data
             })
-        })
+        },(e)=>console.log(e))
     }
 }

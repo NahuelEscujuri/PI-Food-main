@@ -27,9 +27,9 @@ const CreateRecipe = ()=>{
     //#region Handle
     function handleChange(e){
         //#region healthScore controlate
-        if(e.target.name === "healthScore" && e.target.value < 0)e.target.value = 0;
+        if(e.target.name === "healthScore" && e.target.value < 0||
+           e.target.name === "healthScore" && isNaN(+e.target.value))e.target.value = 0;
         if(e.target.name === "healthScore" && e.target.value > 100)e.target.value = 100;
-        console.log(parseFloat(e.target.value) == parseFloat("Nan"))
         //#endregion
 
         setInput((prev)=>({...prev,[e.target.name]:e.target.value}))
@@ -64,7 +64,6 @@ const CreateRecipe = ()=>{
 
         dispatch(actions.createRecipe(input)).then(()=>{
             history.push(`/recipes?typeData=db`);
-            window.location.reload(false);
         });
         setInput({title:"",healthScore:"",summary:"",steps:[""],img:""})
     }
@@ -142,18 +141,19 @@ const CreateRecipe = ()=>{
                          onChange={(e)=>handleChange(e)}/>
                          <span></span>
                          <label>Title</label>
-                         <p className={`${valid.title?"desactive":""}`}>*Title is required</p>
+                         <p className={`${valid.title?"desactive":""} error`}>*Title is required</p>
                 </div>
                 {/* Health Score */}
                 <div className="txt_field">
-                         <input type="number"
+                         <input 
+                         type="text"
                          name={"healthScore"}
                          value={input.healthScore}
                          autoComplete="off"
                          onChange={(e)=>handleChange(e)}/>
                          <span></span>
                          <label>Health Score</label>
-                         <p className={`${valid.healthScore?"desactive":""}`}>*Health Score is required</p>
+                         <p className={`${valid.healthScore?"desactive":""} error`}>*Health Score is required</p>
                 </div>
                 {/* Imagen */}
                 <div className="txt_field">
@@ -166,7 +166,7 @@ const CreateRecipe = ()=>{
                          />
                          <span></span>
                          <label>Imagen</label>
-                         <p className={`${valid.img?"desactive":""}`}>*Imagen is required</p>
+                         <p className={`${valid.img?"desactive":""} error`}>*Imagen is required</p>
                 </div>
                 {/* Summary */}
                 <div className="txt_field">
@@ -174,28 +174,32 @@ const CreateRecipe = ()=>{
                          onChange={(e)=>handleChange(e)}/>
                          <span></span>
                          <label>Summary</label>
-                         <p className={`${valid.summary?"desactive":""}`}>*Summary is required</p>
+                         <p className={`${valid.summary?"desactive":""} error`}>*Summary is required</p>
                 </div>    
                 {/* Diets*/}
+                <div className="txt_field">
+                   <label className="title">Diets</label>
                          <Select isMulti options={selectDiets()} onChange={handleSelect}></Select>
-                         <p className={`${valid.diets?"desactive":""}`}>*Diets is required</p>
+                         <p className={`${valid.diets?"desactive":""} error`}>*Diets is required</p>
+                </div>
                 {/* Steps */}
                 <div>
-                   <label>Steps</label>
+                   <label className="title">Steps</label>
                     {currentSteps.length > 0 &&
                     indexSteps().map(s=>(
-                            <div>
-                                <input type="text"  name={currentSteps[s]} value={currentSteps[s]}
+                            <div className="txt_field">
+                                <textarea type="text"  name={currentSteps[s]} value={currentSteps[s]}
                                 onChange={(e)=>handleChangeSteps(e,s)}/>
-                             <label>Step {s+1}</label>
+                                <span></span>
+                                <label>Step {s+1}</label>
                             </div>
                          ))
                 }
-                <p className={`${valid.steps?"desactive":""}`}>*Step is required</p>
+                <p className={`${valid.steps?"desactive":""} error`}>*Step is required</p>
 
-                <ul>
-                     <li onClick={addStep}>Add Step</li>
-                     <li onClick={removeStep}>Remove Step</li>
+                <ul className="btn-container">
+                     <li onClick={addStep} className="btn-submit blue">Add Step</li>
+                     <li onClick={removeStep} className="btn-submit red">Remove Step</li>
                 </ul>
                     </div>
 

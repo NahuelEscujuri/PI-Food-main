@@ -1,7 +1,67 @@
+.recipes-container{
+	margin-top: 150px;
+}
+/* Search Bar */
+.input-container{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 50px 0;
+}
+.input-box{
+	position: relative;
+	height: 76px;
+	max-width: 900px;
+	width: 100%;
+	background: #fff;
+	border-radius: 8px;
+	box-shadow: 5px 5px 20px #1116;
+}
+.input-box input{
+	height: 100%;
+	width: 100%;
+	outline: none;
+	font-size: 18px;
+	font-weight: 400;
+	border: none;
+	padding: 0 155px 0 65px;
+	background-color: transparent;
+}
+.input-box button{
+	position: absolute;
+	cursor: pointer;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 20px;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 12px 30px;
+	border-radius: 6px;
+	color: var(--text-color);
+	border:none;
+	background-color: var(--main-color);
+}
+
 /* Selects */
-.select, .css-13cymwt-control{
+.react-select-container{
+	justify-content: center;
+	box-shadow: 5px 5px 20px #1116;
+	width: 25%;
+}
+.react-select__menu{
+	width: 25%;
+}
+
+.select-container{
+	margin-top: 20px;
+	justify-content: center;
+	display:flex;
+}
+
+.select{
     display: flex;
-    background-color: var(--dark-color);
+	border-radius: 5px;
+    background-color: var(--text-color);
 	margin: 50px 50px ;
 	justify-content: center;
 	padding: 10px;
@@ -12,16 +72,6 @@
 	outline: none;
 	cursor: pointer;
 }
-.select
-option:checked{
-	display: none;
-}
-
-.select-container{
-	margin-top: 60px;
-	justify-content: center;
-	display:flex;
-}
 
 /* Gallery */
 .container-cards{
@@ -30,41 +80,55 @@ option:checked{
 	margin: 9px auto;
 	flex-wrap: wrap;
 	justify-content: center;
+    flex-direction: column;
 }
 
 .card{
 	position:relative;
 	height: 300px;
-	max-width: 300px;
+	/* max-width: 300px; */
     min-width: 300px;
 	margin: 30px;
 	overflow: hidden;
-	display: block;
+	display: flex;
+    flex-wrap: wrap;
+	justify-content: center;
+    flex-direction: column;
 	flex-basis: 100%;
 	box-shadow: 5px 5px 20px #1116;
-	border-radius: 3%;
+	border-radius: 5px;
     background-color: var(--main-color);
+    flex-direction: column;
 }
-
-
-.card img{
-	object-fit: cover;
-    max-width: 301px;
+.card_img{
+	display: block;
+	position: relative;
+	height: 300px;
+	width: 400px;
+	overflow: hidden;
+}
+.card .card_img img{
+	min-height: 300px;
     align-content: center;
     justify-content: center;
+	transition: .3s;
 }
+.card:hover .card_img img{
+	min-height: 400px
+}
+
 .card_text{
 	height: 200px;
 	width: 300px;
 	padding:  18px;
 	background-color: var(--main-color);
 	box-sizing: border-box;
-	position: absolute;
 	top: 230px;
 	transition: 0.3s;
 }
 
 .card_text h3{
+	color: var(--text-color);
 	text-transform: uppercase;
     margin-bottom: 20px;
 }

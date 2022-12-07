@@ -7,7 +7,9 @@ const RecipeCard = (props)=>{
     return(
         <Link to={`/recipes/${props.id}`}>
         <div className="card" key={props.key}>
+            <div className="card_img">
                  <img src ={!props.img?imgNotFound:props.img}/>
+            </div>
             <div className="card_text">
                  <h3>{props.title}</h3>
                  <b>Diets:</b>

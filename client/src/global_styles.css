@@ -32,3 +32,7 @@ body{
 .desactive{
 	display: none;
 }
+
+.error{
+    color: #f00;
+}

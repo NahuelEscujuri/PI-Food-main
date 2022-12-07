@@ -81,6 +81,16 @@ const Recipes = (props)=>{
     let RecipePage = totalRecipe.slice(minRecipesPerPage ,maxRecipesPerPage);
     let diets = useSelector(state => state.diets)
 
+    //#region Current Page
+    useEffect(()=>{
+        if(currentPage !== +query.get("page")){
+            addParamByQuery("page",currentPage)
+        }
+        // if(+query.get("page")>cantToPage ||
+        //  +query.get("page")< 0){console.log()}//setCurrentPage(1)
+    },[currentPage])
+    //#endregion
+
     //#region Diets Ref 
     const containerDietsSelect = useRef("containerDietsSelect")
     const dietsSelect = useRef("dietsSelect")
@@ -90,7 +100,7 @@ const Recipes = (props)=>{
         console.log("useEffect",recipe.length,currentRecipe.length);
         setCurrentRecipe([])
         
-        if(recipe.length !== currentRecipe.length || currentRecipe.length == 0){
+        if(recipe.length !== currentRecipe.length || recipe.length == 0){
             console.log(currentDataType)
             dispatch(action.getAllRecipes(currentDataType,currentTitle))
             setCurrentRecipe(recipe)
@@ -110,7 +120,7 @@ const Recipes = (props)=>{
     }
     const handleSubmit = (e)=>{
         e.preventDefault();
-        dispatch(action.getAllRecipes("api",currentTitle))
+        dispatch(action.getAllRecipes("e",currentTitle))
         addParamByQuery("page",1)
         setCurrentPage(1)
         console.log(currentTitle)
@@ -217,7 +227,7 @@ const Recipes = (props)=>{
 
     useEffect(()=>{
         console.log("RECIPE",currentRecipe)
-        // dispatch(action.getAllRecipes(currentDataType,currentTitle))
+        setCurrentPage(1)
     },[currentRecipe])
     
     const selectDiets = ()=>{
@@ -232,62 +242,72 @@ const Recipes = (props)=>{
 
     return(
         <>
-        <h1>Foods</h1>
-            {/* Search Bar */}
-            <div>
-                <form onSubmit={handleSubmit}>
-                 <input type={"text"} onChange={handleInputChange}/>
-                 <button type="submit">Search</button>
-                </form>
-            </div>
-                
-            {/* Filters */}
-            <Select isMulti options={selectDiets()} onChange={handleSelect}></Select>
+        <div className="recipes-container">
+        
+        {/* Search Bar */}
+        <div className={`input-container`}>
+            <form className="input-box" onSubmit={handleSubmit}>
+             <input type={"text"} className="input" onChange={handleInputChange}/>
+             <button type="submit">Search</button>
+            </form>
+        </div>
             
-            {/* Order */}
-            <div className="select-container">
-            
-            <select className="select" name="select" onChange={DataTypechange}>
-                <option value ="all" selected={equalQuery("all")?"selected":null}>
-                    All</option>
-                <option value ="db" selected={equalQuery("db")?"selected":null}>
-                    Data Base</option>
-                <option value ="api" selected={equalQuery("api")?"selected":null}>
-                    Api</option>
-            </select>
-            
-            <select className="select" name="select" onChange={orderchange}>
-                <option value ="A - Z">A - Z</option>
-                <option value ="Z - A">Z - A</option>
-                <option value ="Healthier">Healthier</option>
-                <option value ="Less Healthier">Less Healthier</option>
-            </select>
-            </div>
-
-            {/* Recipes */}
-        <div className="container-cards">
-            {recipe &&
-            pagingOfRecipes().map(p=>(p?<RecipeCard
-            id={p.id}
-            title={p.title}
-            diets={p.diets}
-            img={p.img}/>:undefined))}
+        {/* Filters */}
+        <div className={`select-container ${recipe.length == 0&&"desactive"}`}>
+        <Select 
+        isMulti 
+        options={selectDiets()} 
+        onChange={handleSelect}
+        className="react-select-container"
+        classNamePrefix="react-select"
+        ></Select>
+        </div>
+        
+        {/* Order */}
+        <div className={`select-container ${recipe.length == 0&&"desactive"}`}>
+        
+        <select className="select" name="select" onChange={DataTypechange}>
+            <option value ="all" selected={equalQuery("all")?"selected":null}>
+                All</option>
+            <option value ="db" selected={equalQuery("db")?"selected":null}>
+                Data Base</option>
+            <option value ="api" selected={equalQuery("api")?"selected":null}>
+                Api</option>
+        </select>
+        
+        <select className="select" name="select" onChange={orderchange}>
+            <option value ="A - Z">A - Z</option>
+            <option value ="Z - A">Z - A</option>
+            <option value ="Healthier">Healthier</option>
+            <option value ="Less Healthier">Less Healthier</option>
+        </select>
         </div>
 
-        
-        {/* Pagination Button  */}
-        <form>
-            <div className={`container-btn`}>
-            <ul className="container-btn_pagination">
-                <li className={`prev ${minRecipesPerPage > 0?null:"notHover"}`} onClick={prevPag}>
-                    <span></span>
-                    </li>
-                <li className={`next ${maxRecipesPerPage < pagingOfRecipes().length?null:"notHover"}`} onClick={nextPag}>
-                    <span></span>
-                    </li>
-            </ul>
-            </div>
-        </form>
+        {/* Recipes */}
+    <div className="container-cards">
+        {recipe &&
+        pagingOfRecipes().map(p=>(p?<RecipeCard
+        id={p.id}
+        title={p.title}
+        diets={p.diets}
+        img={p.img}/>:undefined))}
+    </div>
+
+    
+    {/* Pagination Button  */}
+    <form className={`${recipe.length == 0&&"desactive"}`}>
+        <div className={`container-btn`}>
+        <ul className="container-btn_pagination">
+            <li className={`prev ${minRecipesPerPage > 0?null:"notHover"}`} onClick={prevPag}>
+                <span></span>
+                </li>
+            <li className={`next ${maxRecipesPerPage < pagingOfRecipes().length?null:"notHover"}`} onClick={nextPag}>
+                <span></span>
+                </li>
+        </ul>
+        </div>
+    </form>
+        </div>
         </>
     )
 }

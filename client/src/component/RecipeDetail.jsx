@@ -4,10 +4,7 @@ import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import * as action from "../redux/action.js";
 import imgNotFound from "./img/imgNotFound.jpg";
-// import "./styles/detail-style.css";
-// import imgNotFound from "./imgNotFound.png";
-// import Loader from "./Loader.jsx";
-// import '../backgroundColorTypes.css'
+import "./styles/detail-style.css";
 
 const RecipeDetail =() => {
     const [ currentRecipe, setCurrentRecipe] = useState([])
@@ -51,14 +48,16 @@ const RecipeDetail =() => {
                 {console.log("Current recipe ID",currentRecipe[0]?.id)}
                 {console.log("¿Son iguales?",currentRecipe[0]?.id == currentId)}
                 {currentRecipe[0]?.id == currentId?(
-                        <div className={`detail-content`}>
+                  <>
+                       <div className={`detail-content`}>
+
                             {/* IMG */}
                             <div className="detail-item">
-                               {console.log("currentRecipe",currentRecipe)}
                                <img src={!currentRecipe[0]?.img?imgNotFound:currentRecipe[0]?.img}/>
                             </div>
+
                             {/* TEXT */}
-                            <div className="detail-item">
+                            <div className="detail-item detail-item_text">
                               {/* title */}
                               <div className="detail-item_item">
                                 <h1>{recipe[0]?.title}</h1>
@@ -73,34 +72,38 @@ const RecipeDetail =() => {
                                 <h3>Health Score:</h3>
                                 <h3>{currentRecipe[0]?.healthScore}</h3>
                               </div>
-                              <div className="detail-item_item detail_id">
+                            </div>
+                              </div>
+                              
+                              {/* Summary*/}
+                              <div className="data-container detail-item_item">
                                 <h3>Summary</h3>
-                                <p>{recipe[0]?.summary}</p>
+                                <div 
+                                className="summary"
+                                dangerouslySetInnerHTML={{__html: currentRecipe[0]?.summary}}>
+                                  </div>
                               </div>
                               {/* Steps */}
-                              <div className="stats-container detail-item_item">
-                                <div className="stats-item">
-                                  <ul>{
+                              <div className="data-container detail-item_item">
+                                <div className="steps">{
                                     recipe[0]?.steps &&
                                     indexSteps().map(s=>(
-                                      <li>
+                                      <div className="data-container detail-item_item">
                                         <h3>Step {s+1}</h3>
-                                        <p>{recipe[0]?.steps[s]}</p>
-                                      </li>
+                                        <div className="summary">{recipe[0]?.steps[s]}</div>
+                                      </div>
                                     ))}
-                                  </ul>
-                                </div>
+                                  </div>
                               </div>
                               {/* Diets */}
-                               <div className="type-container detail-item_item detail_diets-container">
+                               <div className="data-container detail-item_item">
                                 <h3>Diets:</h3>
-                                <div className="detail_diets">
-                                   {currentRecipe[0]?.diets.map(t=>(<p>{t}</p>))}
+                                <div className="summary diets-container">
+                                   {currentRecipe[0]?.diets.map(t=>(<p className="diet">{t}</p>))}
                                 </div>
                                </div>
-                            </div>
-                            
-                        </div>):<h3>Loader...</h3> //<Loader/>
+                  </>
+                        ):<h3>Loader...</h3> //<Loader/>
                 }
           </div>
         );

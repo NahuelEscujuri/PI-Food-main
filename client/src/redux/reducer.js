@@ -11,7 +11,7 @@ export default function rootReducer(state = initialState, actions){
         case CREATE_RECIPES:{
             return {
                 ...state,
-                recipes:[...state.recipes, actions.payload]
+                recipeDetail:[...state.recipes, actions.payload]
             }
         }
         case GET_ALL_RECIPES:{
