@@ -15,6 +15,9 @@ export default function NavBar(){
 				</Link>
 			{/* <!-- Nav Icons -->*/}
 			<div className="nav-icons">
+				<Link to={"/recipes"} className="btn bx-ball" id="bell-icon">Recipes</Link>
+			</div>
+			<div className="nav-icons">
 				<Link to={"/about-me"} className="btn bx-ball" id="bell-icon">About Me</Link>
 			</div>
 			<div className="nav-icons">

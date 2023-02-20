@@ -122,15 +122,22 @@ router.get("/recipes/:id",async (req,res,next)=>{
             }
         }).then(async r=>{console.log("find all",r);return await clearRecipesDb(r)},()=>{return false})
 
-        let apiKey = API_KEY.slice(1,API_KEY.length-1);
-        let apiUrl = "https://api.spoonacular.com/recipes/"+id+"/information?apiKey="+apiKey;
-
+        // let apiKey = API_KEY.slice(1,API_KEY.length-1);
+        // let apiUrl = "https://api.spoonacular.com/recipes/"+id+"/information?apiKey="+apiKey;
+        
         if(recipesDb)res.send(recipesDb)
-        else await axios({method:'get',
-        url: 
-        apiUrl,
-        headers:{"Accept-Encoding":"null"}})
-        .then(async r=>{res.send(await clearRecipesApi([r.data]))},(e)=>next(e))
+        //Uso con la Api original
+        // else await axios({method:'get',
+        // url:apiUrl,
+        // headers:{"Accept-Encoding":"null"}})
+        // .then(async r=>{res.send(await clearRecipesApi([r.data]))},(e)=>next(e))
+
+        else{
+            let recipesApi = await allRecipesApi();
+            recipesApi = await recipesApi.filter(r=>r.id == id)
+            console.log(recipesApi)
+            res.send(await recipesApi);
+        }
     }
     catch(e){
         next();
