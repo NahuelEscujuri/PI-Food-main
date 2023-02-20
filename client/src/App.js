@@ -7,7 +7,7 @@ import NavBar from './component/NavBar'
 import Error404 from './component/Error404'
 import axios from 'axios';
 import './global_styles.css'
-axios.defaults.baseURL = 'https://pi-food-main-production-14c2.up.railway.app';
+axios.defaults.baseURL = 'https://pi-food-main-production-14c2.up.railway.app'; 
 
 function App() {
   return (
