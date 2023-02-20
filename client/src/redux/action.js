@@ -8,8 +8,8 @@ export const CREATE_RECIPES = "CREATE_RECIPES";
 
 export const getAllRecipes = (only,title)=>{
     return function (dispatch){
-        let url = title !== undefined?`http://localhost:3001/recipes?typeData=${only}&title=${title}`:
-        `http://localhost:3001/recipes?typeData=${only}`
+        let url = title !== undefined?`/recipes?typeData=${only}&title=${title}`:
+        `/recipes?typeData=${only}`
         return fetch(url)
         .then((response) => response.json())
         .then(data=>{
@@ -23,7 +23,7 @@ export const getAllRecipes = (only,title)=>{
 
 export const getRecipeDetails = (id)=>{
     return function(dispatch){
-        fetch(`http://localhost:3001/recipes/${id}`)
+        fetch(`/recipes/${id}`)
         .then((response) => response.json())
         .then(dataD=>{
             console.log("desde el ACTION",dataD)
@@ -38,7 +38,7 @@ export const getRecipeDetails = (id)=>{
 export function createRecipe(values){
     console.log("Desde el ACTIONS",values);
     return function(dispatch){
-        return axios.post(`http://localhost:3001/recipes`,values)
+        return axios.post(`/recipes`,values)
           .then((data) => { 
             console.log("Dispatch",dispatch)
          dispatch({
@@ -50,7 +50,7 @@ export function createRecipe(values){
 
 export const getAllDiets = ()=>{
     return function (dispatch){
-        return fetch(`http://localhost:3001/diets`)
+        return fetch(`/diets`)
         .then((response) => response.json())
         .then(data=>{
             console.log(data);
