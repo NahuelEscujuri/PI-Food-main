@@ -11,7 +11,7 @@ const RecipeCard = (props)=>{
                  <img src ={!props.img?imgNotFound:props.img}/>
             </div>
             <div className="card_text">
-                 <h3>{props.title}</h3>
+                 <h3>{props.title}<span></span></h3>
                  <b>Diets:</b>
                  {props.diets?<div className="card_text-diet">
                    {props.diets.map(d=>(<p className={d}>{d}</p>))} 

@@ -8,6 +8,7 @@ import MultiSelectTag from './selectTypes.js'
 import Select from 'react-select'
 import './styles/form-style.css'
 import './styles/pagination-style.css'
+import searchIcon from './img/search-icon.png'
 
 const Recipes = (props)=>{
     //#region URLs
@@ -247,8 +248,11 @@ const Recipes = (props)=>{
         {/* Search Bar */}
         <div className={`input-container`}>
             <form className="input-box" onSubmit={handleSubmit}>
-             <input type={"text"} className="input" onChange={handleInputChange}/>
-             <button type="submit">Search</button>
+             <input type={"text"}
+             className="input"
+             placeholder="write the name of the recipe"
+             onChange={handleInputChange}/>
+             <button type="submit"><img src={searchIcon}/></button>
             </form>
         </div>
             

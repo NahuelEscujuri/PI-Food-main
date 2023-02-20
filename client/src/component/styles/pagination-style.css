@@ -13,6 +13,8 @@
 	height: 76px;
 	max-width: 900px;
 	width: 100%;
+	display: flex;
+	justify-content: space-between;
 	background: #fff;
 	border-radius: 8px;
 	box-shadow: 5px 5px 20px #1116;
@@ -28,18 +30,20 @@
 	background-color: transparent;
 }
 .input-box button{
-	position: absolute;
 	cursor: pointer;
 	top: 50%;
-	transform: translateY(-50%);
 	right: 20px;
 	font-size: 16px;
 	font-weight: 400;
-	padding: 12px 30px;
-	border-radius: 6px;
+	/* padding: 12px 30px; */
+	border-radius: 0 6px 6px 0;
 	color: var(--text-color);
 	border:none;
 	background-color: var(--main-color);
+}
+.input-box button img{
+	height: 100%;
+	padding: 23px;
 }
 
 /* Selects */
@@ -47,6 +51,9 @@
 	justify-content: center;
 	box-shadow: 5px 5px 20px #1116;
 	width: 25%;
+}
+.react-select__placeholder{
+	font-family: "Pacifico";
 }
 .react-select__menu{
 	width: 25%;
@@ -62,6 +69,7 @@
     display: flex;
 	border-radius: 5px;
     background-color: var(--text-color);
+	font-family: "Pacifico";
 	margin: 50px 50px ;
 	justify-content: center;
 	padding: 10px;
@@ -72,7 +80,6 @@
 	outline: none;
 	cursor: pointer;
 }
-
 /* Gallery */
 .container-cards{
 	display: flex;
@@ -92,19 +99,18 @@
 	overflow: hidden;
 	display: flex;
     flex-wrap: wrap;
-	justify-content: center;
-    flex-direction: column;
+	justify-content: space-between;
+    flex-direction: row-reverse;
 	flex-basis: 100%;
 	box-shadow: 5px 5px 20px #1116;
 	border-radius: 5px;
-    background-color: var(--main-color);
-    flex-direction: column;
+    background-color: var(--text-color);
 }
 .card_img{
 	display: block;
 	position: relative;
 	height: 300px;
-	width: 400px;
+	width: 36%;
 	overflow: hidden;
 }
 .card .card_img img{
@@ -119,28 +125,31 @@
 
 .card_text{
 	height: 200px;
-	width: 300px;
+	width: 400px;
+	margin: auto;
 	padding:  18px;
-	background-color: var(--main-color);
 	box-sizing: border-box;
 	top: 230px;
 	transition: 0.3s;
 }
 
 .card_text h3{
-	color: var(--text-color);
+	color: var(--main-color);
+	display: flex;
+	flex-direction: column;
 	text-transform: uppercase;
     margin-bottom: 20px;
 }
 .card_text b{
-    color: var(--text-color);
-    display: block;
+    color: var(--dark-color);
+    display: inline;
+	border-bottom: var(--main-color) 2px solid;
     padding: 0 0 2px 0;
 }
 .card_text .card_text-diet{
 	display: flex;
     width: 90%;
-    margin: 0 9px;
+    margin: 12px 0;
     flex-wrap: wrap;
     justify-content: left;
 }
@@ -148,11 +157,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: var(--text-color);
-    background-color: var(--dark-color);
+    color: var(--main-color);
+    /* background-color: var(--text-color); */
     padding: 0.2rem 0.4rem;
     margin: 0.2rem 0.2rem 0 0;
-    font-weight: 500;
+    font-weight: 700;
+	border: var(--main-color) 2px solid;
     border-radius: 9999px;
 }
 .card_text span{
