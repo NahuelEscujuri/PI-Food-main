@@ -9,6 +9,7 @@ import Select from 'react-select'
 import './styles/form-style.css'
 import './styles/pagination-style.css'
 import searchIcon from './img/search-icon.png'
+import Loader from "./Loader.jsx";
 
 const Recipes = (props)=>{
     //#region URLs
@@ -289,12 +290,17 @@ const Recipes = (props)=>{
 
         {/* Recipes */}
     <div className="container-cards">
-        {recipe &&
+        {recipe.length > 0?
         pagingOfRecipes().map(p=>(p?<RecipeCard
         id={p.id}
         title={p.title}
         diets={p.diets}
-        img={p.img}/>:undefined))}
+        img={p.img}/>:undefined)):<Loader/>}
+        {
+            // pagingOfRecipes().length == 0 && recipe.length > 0?
+            // (<div>Recipes not found</div>):
+            // undefined
+        }
     </div>
 
     
