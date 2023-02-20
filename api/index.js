@@ -24,12 +24,12 @@ require('dotenv').config();
 let allDiets = ["gluten free","ketogenic","vegetarian","lacto-vegetarian","ovo-vegetarian","vegan","pescetarian","paleo","primal","FODMAP","whole30"] 
 const preloadDiets = async ()=> allDiets.map(async r => await Diet.create({name:r}));
 
-const {DB_PORT} = process.env
+const {PORT} = process.env
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
-  server.listen(DB_PORT, () => {
+  server.listen(PORT, () => {
     preloadDiets();
-    console.log('%s listening at '+DB_PORT); // eslint-disable-line no-console
+    console.log('%s listening at '+PORT); // eslint-disable-line no-console
   });
 });
