@@ -264,7 +264,7 @@
 	transform: rotate(45deg) translate(-2px,-1px) scaleX(1);
 } 
 
-/* Btn Desactive */
+/* Btn Desactive *
 /* .container-btn_pagination .notHover{
 	box-shadow: none;	
     pointer-events: none;
@@ -272,3 +272,16 @@
 .container-btn_pagination .notHover span{
 	border-color: var(--dark-color);
 } */
+
+@media (max-width: 800px) {
+	.card{
+		flex-direction: column;
+		height: 500px;
+	}
+	.card_img {
+		width: 100%;
+	}
+	.card .card_img img{
+		width: 100%;
+	}
+}
