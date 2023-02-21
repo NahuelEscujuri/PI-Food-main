@@ -25,7 +25,8 @@
 
 
 body{
-    background-color: FCF9BE;
+    background-color: var(--text-color);
+    height: 100%;
     color: var(--dark-color);
 }
 
@@ -41,7 +42,7 @@ body{
     z-index: 3000;
     display: flex;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     justify-content: center;
     align-items: center;
 }

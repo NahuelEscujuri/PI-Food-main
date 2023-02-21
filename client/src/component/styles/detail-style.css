@@ -8,8 +8,8 @@
 .detail-item{
     position: relative;
     overflow: hidden;
-    min-width: 475px;
-    border-radius:35px;
+    width: 100%;
+    border-radius:10px;
 }
 
 .detail-item_text{
@@ -17,7 +17,7 @@
 }
 
 .detail-item img{
-    max-width: 475px;
+    width: 100%;
 }
 .detail-item_item{
     margin: 25px 0;
@@ -25,14 +25,17 @@
 .detail-item_item h1{
     font-weight: 600;
     text-transform: uppercase;
-    color:var(--text-color)
+    color:var(--main-color)
 }
 .detail_id{
     display: flex;
 }
 .detail_id h3{
     margin: 0 9px;
-    color:var(--light-color)
+    color:var(--main-color)
+}
+.detail_id .detail_id-value{
+    color: var(--dark-color);
 }
 
 /* Text */
@@ -46,13 +49,14 @@
     border-radius: 20px;
 }
 .data-container h3{
-    color: var(--text-color);
+    color: var(--main-color);
+	font-family: "Pacifico";
     font-size: 28px;
     font-weight: 700;
     margin-bottom: 10px;
 }
 .data-container .summary{
-    color: var(--text-color);
+    color: var(--dark-color);
 }
 .data-container .summary b{
     color: var(--main-color)

@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import * as action from "../redux/action.js";
 import imgNotFound from "./img/imgNotFound.jpg";
+import Loader from "./Loader.jsx";
 import "./styles/detail-style.css";
 
 const RecipeDetail =() => {
@@ -65,12 +66,12 @@ const RecipeDetail =() => {
                               {/* Id */}
                               <div className="detail-item_item detail_id">
                                 <h3>ID:</h3>
-                                <h3>{currentRecipe[0]?.id}</h3>
+                                <h3 className="detail_id-value">{currentRecipe[0]?.id}</h3>
                               </div>
                               {/* Heald Score */}
                               <div className="detail-item_item detail_id">
                                 <h3>Health Score:</h3>
-                                <h3>{currentRecipe[0]?.healthScore}</h3>
+                                <h3 className="detail_id-value">{currentRecipe[0]?.healthScore}</h3>
                               </div>
                             </div>
                               </div>
@@ -103,7 +104,7 @@ const RecipeDetail =() => {
                                 </div>
                                </div>
                   </>
-                        ):<h3>Loader...</h3> //<Loader/>
+                        ):<Loader/> //<Loader/>
                 }
           </div>
         );
