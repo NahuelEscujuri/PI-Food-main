@@ -6,6 +6,7 @@ export const SEARCH_RECIPES = "GET_ALL_RECIPES";
 export const GET_DETAIL_RECIPES = "GET_DETAIL_RECIPES";
 export const CREATE_RECIPES = "CREATE_RECIPES";
 
+// 
 export const getAllRecipes = (only,title)=>{
     return function (dispatch){
         let url = title !== undefined?`https://pi-food-main-production-14c2.up.railway.app/recipes?typeData=${only}&title=${title}`:
